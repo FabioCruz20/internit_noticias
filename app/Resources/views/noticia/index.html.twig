@@ -2,4 +2,14 @@
 
 {% block body %}
     <h1>Notícias</h1>
+    {% for noticia in noticias %}
+        <article class="noticia">
+            <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
+            <p>{{ noticia.resumo }}</p>
+            <img src="{{ asset('uploads/' ~ noticia.imagem) }}" alt="imagem">
+            <p>{{ noticia.conteudo }}</p>
+            <hr>
+        </article>
+    {% endfor %}
+    <a href="#">Ver mais notícias</a>
 {% endblock %}
