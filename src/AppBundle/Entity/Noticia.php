@@ -56,6 +56,12 @@ class Noticia
      */
     private $conteudo;
 
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="destaque", type="boolean")
+     */
+    private $destaque;
 
     /**
      * Get id
@@ -185,6 +191,30 @@ class Noticia
     public function getConteudo()
     {
         return $this->conteudo;
+    }
+
+    /**
+     * Set destaque
+     * 
+     * @param boolean $destaque
+     * 
+     * @return Noticia
+     */
+    public function setDestaque($destaque) 
+    {
+        $this->destaque = $destaque;
+
+        return $this;
+    }
+
+    /**
+     * Get destaque
+     * 
+     * @return boolean
+     */
+    public function getDestaque() 
+    {
+        return $this->destaque;
     }
 }
 
