@@ -1,0 +1,16 @@
+{% extends('base.html.twig') %}
+
+{% block body %}
+    <h1>Notícias</h1>
+    {% for noticia in noticias %}
+        <article class="noticia">
+            <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
+            <p>Data: {{ noticia.data.format('d/M/Y') }}</p>
+            <img src="{{ asset('uploads/' ~ noticia.imagem) }}" alt="imagem">
+            <p>{{ noticia.resumo }}</p>
+            <p><a href="{{ path('noticia.detalhe', {id: noticia.id}) }}">Saiba mais</a>
+            <hr>
+        </article>
+    {% endfor %}
+    <a href="{{ path('noticia.todas') }}">Ver mais notícias</a>
+{% endblock %}
