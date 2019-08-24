@@ -47,7 +47,7 @@ class NoticiaController extends Controller
         $noticia = $repository->findById($id);
 
         return $this->render("noticia/noticia.html.twig", [
-            "noticia" => $noticia
+            "noticia" => $noticia[0]
         ]);
     }
 }
