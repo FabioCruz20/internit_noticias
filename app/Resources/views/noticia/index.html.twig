@@ -5,11 +5,12 @@
     {% for noticia in noticias %}
         <article class="noticia">
             <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
-            <p>{{ noticia.resumo }}</p>
+            <p>Data: {{ noticia.data.format('d/M/Y') }}</p>
             <img src="{{ asset('uploads/' ~ noticia.imagem) }}" alt="imagem">
-            <p>{{ noticia.conteudo }}</p>
+            <p>{{ noticia.resumo }}</p>
+            <p><a href="{{ path('noticia.detalhe', {id: noticia.id}) }}">Saiba mais</a>
             <hr>
         </article>
     {% endfor %}
-    <a href="#">Ver mais notícias</a>
+    <a href="{{ path('noticia.todas') }}">Ver mais notícias</a>
 {% endblock %}

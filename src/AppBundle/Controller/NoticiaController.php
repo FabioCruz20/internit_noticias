@@ -12,17 +12,42 @@ use AppBundle\Entity\Noticia;
 class NoticiaController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="destaque")
      */
     public function indexAction() {
 
         $repository = $this->getDoctrine()->getRepository(Noticia::class);
         $noticias = $repository->findBy(
-            ['destaque' => true]
+            ["destaque" => true]
         );
 
         return $this->render("noticia/index.html.twig", [
-            'noticias' => $noticias
+            "noticias" => $noticias
+        ]);
+    }
+
+    /**
+     * @Route("/todas", name="todas")
+     */
+    public function todasAction() {
+        $repository = $this->getDoctrine()->getRepository(Noticia::class);
+        $noticias = $repository->findAll();
+
+        return $this->render("noticia/index.html.twig", [
+            "noticias" => $noticias
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="detalhe")
+     */
+    public function detalheNoticiaAction($id) {
+        $repository = $this->getDoctrine()->getRepository(Noticia::class);
+
+        $noticia = $repository->findById($id);
+
+        return $this->render("noticia/noticia.html.twig", [
+            "noticia" => $noticia
         ]);
     }
 }
