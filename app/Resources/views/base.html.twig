@@ -14,7 +14,7 @@
                     <li><a href="{{ path('noticia.destaque') }}">Logo_empresa</a>
                     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                         <li><a href="{{ path('noticia.destaque') }}">Notícias</a></li>
-                        <li><a href="{{ path('noticia.destaque') }}">Editar dados</a></li>
+                        <li><a href="{{ path('user', {id: 5}) }}">Editar dados</a></li>
                         <li><a href="{{ path('app_logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
