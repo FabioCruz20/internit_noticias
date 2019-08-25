@@ -4,6 +4,9 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
+            
+        AppBundle\Entity\Admin:
+            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -13,6 +16,11 @@ security:
             entity:
                 class: AppBundle:User
                 property: email
+        
+        admin_db_provider:
+            entity:
+                class: AppBundle:Admin
+                property: email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,7 +28,21 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        admin:
+            pattern: ^/admin
+            anonymous: ~
+            form_login:
+                login_path: admin.login
+                check_path: admin.login
+                default_target_path: /admin/noticia
+                always_use_default_target_path: true
+            
+            http_basic: ~
+            provider: admin_db_provider
+
+
         main:
+            pattern: ^/
             anonymous: ~
             # activate different ways to authenticate
             form_login:
@@ -39,8 +61,15 @@ security:
 
             logout:
                 path: app_logout
+        
+
+    access_denied_url: /login
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/*, roles: ROLE_USER }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/noticia, roles: ROLE_USER }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_USER }
+        
