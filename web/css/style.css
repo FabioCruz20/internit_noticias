@@ -1,0 +1,86 @@
+/* ************************** base *************************** */
+
+:root {
+    --primary-black: #252525;
+    --primary-white: #fafafa;
+    --primary-gray:    #aaa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    border: 1px solid;
+    border-color: var(--priimary-black);
+    padding: 6px 4px;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 15px 0;
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    padding: 5px 20px;
+}
+
+/******************************* header ****************************/
+
+header.header {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    padding: 10px 5px;
+}
+
+.header ul li {
+    display: inline-block;
+}
+
+.header ul li a {
+    color: var(--primary-white);
+    padding: 10px 5px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.header ul li a:hover {
+    background-color: var(--primary-gray);
+    transition: 0.3s;
+}
+
+/***************************** main body **************************/
+
+.main {
+    margin-top: 20px;
+}
+
+img {
+    width: 100%;
+    margin: 10px auto;
+    display: block;
+}
+
+/****************************** noticias ***************************/
+
+.noticia {
+    padding: 10px 15px;
+    border: 1px solid;
+    border-color: var(--primary-black);
+    margin: 10px 0;
+}
