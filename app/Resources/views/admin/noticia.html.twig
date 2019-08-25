@@ -1,0 +1,22 @@
+{% extends("base.html.twig") %}
+{% block body %}
+    <h1>Notícias</h1>
+    {% for message in app.flashes("notice") %}
+        <div class="limite-destaques">{{ message }}</div>
+    {% endfor %}
+    {% for noticia in noticias %}
+        <article class="noticia">
+            <a href="{{ path('noticia.edit', {id: noticia.id}) }}">Editar</a> |
+            <a href="#">Excluir</a>
+            <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
+            {% if noticia.destaque %}
+                <div class="destaque">Destaque</div>
+            {% endif %}
+            <p>Data: {{ noticia.data.format('d/M/Y') }}</p>
+            <img src="{{ asset('uploads/imagens/' ~ noticia.imagem) }}" alt="{{noticia.imagem}}">
+            <p>{{ noticia.resumo }}</p>
+            <p>{{ noticia.conteudo }}</p>
+            <hr>
+        </article>
+    {% endfor %}
+{% endblock %}

@@ -4,12 +4,13 @@
     --primary-black: #252525;
     --primary-white: #fafafa;
     --primary-gray:    #aaa;
+    --highlight: #55da1c;
+    --limit: #e23555;
 }
 
 * {
     margin: 0;
     padding: 0;
-    border: none;
 }
 
 body {
@@ -38,6 +39,15 @@ button[type="submit"] {
     background-color: var(--primary-black);
     color: var(--primary-white);
     padding: 5px 20px;
+    border: none;
+}
+
+textarea {
+    border: 1px solid;
+    border-color: var(--primary-black);
+    padding: 6px 4px;
+    width: 245px;
+    height: 80px;
 }
 
 /******************************* header ****************************/
@@ -83,4 +93,20 @@ img {
     border: 1px solid;
     border-color: var(--primary-black);
     margin: 10px 0;
+}
+
+.destaque {
+    background-color: var(--highlight);
+    padding: 5px 3px;
+    width: 80px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.limite-destaques {
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 1.3em;
+    background-color: var(--limit);
+    color: var(--primary-white);
 }
