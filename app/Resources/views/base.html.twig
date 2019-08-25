@@ -4,10 +4,25 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header class="header">
+            <nav class="container">
+                <ul>
+                    <li><a href="{{ path('noticia.destaque') }}">Logo_empresa</a>
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <li><a href="{{ path('noticia.destaque') }}">Notícias</a></li>
+                        <li><a href="{{ path('noticia.destaque') }}">Editar dados</a></li>
+                        <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <section class="container main">
+            {% block body %}{% endblock %}
+        </section>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

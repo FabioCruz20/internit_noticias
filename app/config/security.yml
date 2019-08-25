@@ -27,6 +27,7 @@ security:
                 login_path: login
                 check_path: login
                 default_target_path: /noticia
+                always_use_default_target_path: true
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
@@ -35,6 +36,9 @@ security:
             #form_login: ~
             http_basic: ~
             provider: our_db_provider
+
+            logout:
+                path: app_logout
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -54,8 +54,15 @@ class AuthController extends Controller
             return $this->redirect($this->generateUrl('login'));
         }
 
-        return $this->render("user/register.html.twig", [
+        return $this->render("auth/register.html.twig", [
             "form" => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logoutAction() {
+        return $this->redirect($this->generateUrl("login"));
     }
 }
