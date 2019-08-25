@@ -13,6 +13,10 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -103,10 +107,16 @@ img {
     text-align: center;
 }
 
-.limite-destaques {
+.limite-destaques, .noticia-sucesso {
     padding: 10px 5px;
     text-align: center;
     font-size: 1.3em;
     background-color: var(--limit);
     color: var(--primary-white);
+    margin-bottom: 10px;
+}
+
+.noticia-sucesso {
+    background-color: var(--highlight);
+    color: var(--primary-black);
 }
