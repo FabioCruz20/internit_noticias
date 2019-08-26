@@ -98,7 +98,7 @@ class Admin implements UserInterface, \Serializable
     // métodos da interface UserInterface
     public function getRoles() 
     {
-        return ['ROLE_USER'];
+        return ['ROLE_ADMIN'];
     }
 
     public function getPassword() 
