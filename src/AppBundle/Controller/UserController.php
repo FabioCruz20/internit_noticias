@@ -61,6 +61,21 @@ class UserController extends Controller
             "admin/user-edit.html.twig", "Criar", "Usuário criado");
     }
 
+    /**
+     * @Route("/admin/user/delete/{id}", name="user.delete")
+     */
+    public function userDeleteAction(User $usuario) {
+
+        // referencia EntityManager para apagar o usuário
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($usuario);
+        $em->flush();
+
+        $this->addFlash("success", "Usuário removido");
+
+        return $this->redirect($this->generateUrl("user.admin"));
+    }
+
 
     private function register(Request $request, UserPasswordEncoderInterface $passwordEncoder,
         User $usuario, $nomeRota, $urlForm, $funcao, $msgSucesso) 

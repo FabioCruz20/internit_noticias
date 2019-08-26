@@ -27,8 +27,11 @@
                 <td>{{ usuario.endereco }}</td>
                 <td>{{ usuario.cidade }}</td>
                 <td><a href="{{ path('user.edit', {id: usuario.id}) }}">Atualizar</a></td>
-                <td>Excluir</td>
+                <td><a href="javascript:userDelete({{ usuario.id }})">Excluir</a></td>
             </tr>
         {% endfor %}
     </tbody>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/user-edit.js') }}"></script>
 {% endblock %}
