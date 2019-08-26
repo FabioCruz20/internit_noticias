@@ -1,0 +1,37 @@
+{% extends("base.html.twig") %}
+{% block body %}
+    <h1>Usuários</h1>
+    <a href="{{ path('user.create') }}">Novo usuário</a>
+    {% for message in app.flashes("success") %}
+        <div class="noticia-sucesso">{{ message }}</div>
+    {% endfor %}
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>CPF</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
+            <th>Atualizar</th>
+            <th>Excluir</th>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.nome }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.cpf }}</td>
+                <td>{{ usuario.endereco }}</td>
+                <td>{{ usuario.cidade }}</td>
+                <td><a href="{{ path('user.edit', {id: usuario.id}) }}">Atualizar</a></td>
+                <td><a href="javascript:userDelete({{ usuario.id }})">Excluir</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/user-edit.js') }}"></script>
+{% endblock %}
