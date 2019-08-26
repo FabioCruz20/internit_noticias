@@ -3,7 +3,7 @@
     <article>
         <h1> {{ noticia.titulo }} </h1>
         <p> {{ noticia.resumo }} </p>
-        <img src="{{ asset('uploads/' ~ noticia.imagem) }}" alt="Imagem">
+        <img src="{{ asset('uploads/imagens/' ~ noticia.imagem) }}" alt="Imagem">
         <p> {{ noticia.conteudo }} </p>
     </article>
 {% endblock %}
