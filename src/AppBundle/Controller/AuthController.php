@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
+use AppBundle\Form\AdminType;
+use AppBundle\Entity\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -80,6 +82,37 @@ class AuthController extends Controller
         return $this->render("admin/login.html.twig", [
             "ultimo_email" => $ultimoEmail,
             "erro" => $erro
+        ]);
+    }
+
+    /**
+     * @Route("/admin/register", name="admin.register")
+     */
+    public function adminRegisterAction(Request $request, 
+        UserPasswordEncoderInterface $passwordEncoder) 
+    {
+        // cria usuário e formulário.
+        $usuario = new Admin();
+        $form = $this->createForm(AdminType::class, $usuario);
+
+        // manipular submissão de formulário
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // codificar senha
+            $senhaCodificada = $passwordEncoder->encodePassword($usuario, $usuario->getPassword());
+            $usuario->setSenha($senhaCodificada);
+
+            // entity manager para salvar o usuário
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('admin.login'));
+        }
+
+        return $this->render("admin/register.html.twig", [
+            "form" => $form->createView()
         ]);
     }
 }
