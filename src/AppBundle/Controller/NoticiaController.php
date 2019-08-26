@@ -129,6 +129,9 @@ class NoticiaController extends Controller
      */
     public function noticiaDeleteAction(Noticia $noticia) {
 
+        // apagando a imagem vinculada à notícia
+        unlink($this->getParameter("uploads_dir") ."/". $noticia->getImagem());
+
         // referenciando o entity manager para deletar a notícia
         $em = $this->getDoctrine()->getManager();
         $em->remove($noticia);

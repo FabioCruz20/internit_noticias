@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/", name="login")
      */
     public function loginAction(AuthenticationUtils $authenticationUtils) {
 
@@ -67,7 +67,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @Route("/admin/login", name="admin.login")
+     * @Route("/admin", name="admin.login")
      */
     public function adminLoginAction(AuthenticationUtils $authenticationUtils) {
 

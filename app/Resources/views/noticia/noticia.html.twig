@@ -1,9 +1,13 @@
 {% extends('base.html.twig') %}
 {% block body %}
-    <article>
+    <article class="noticia">
         <h1> {{ noticia.titulo }} </h1>
+        {% if noticia.destaque %}
+            <div class="destaque">Destaque</div>
+        {% endif %}
+        <p>Data: {{ noticia.data.format('d/M/Y') }}</p>
         <p> {{ noticia.resumo }} </p>
-        <img src="{{ asset('uploads/' ~ noticia.imagem) }}" alt="Imagem">
+        <img src="{{ asset('uploads/imagens/' ~ noticia.imagem) }}" alt="Imagem">
         <p> {{ noticia.conteudo }} </p>
     </article>
 {% endblock %}

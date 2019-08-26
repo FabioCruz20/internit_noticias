@@ -120,3 +120,18 @@ img {
     background-color: var(--highlight);
     color: var(--primary-black);
 }
+
+/************************* users ********************/
+
+table {
+    width: 100%;
+    border: 1px solid;
+    border-color: var(--primary-black);
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid;
+    border-color: var(--primary-black);
+    padding: 4px 10px;
+}
