@@ -23,7 +23,7 @@ class UserController extends Controller
         $usuario = $security->getUser();
 
         return $this->register($request, $passwordEncoder, $usuario, "noticia.destaque", 
-            "user/user.html.twig", "Criar", "Usuário criado");
+            "user/user.html.twig", "Atualizar", "Usuário atualizado");
     }
 
     /**
