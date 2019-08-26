@@ -63,14 +63,13 @@ security:
                 path: app_logout
         
 
-    access_denied_url: /login
+    access_denied_url: /
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/noticia, roles: ROLE_USER }
-        - { path: ^/user, roles: ROLE_USER }
         - { path: ^/admin/noticia, roles: ROLE_ADMIN }
         - { path: ^/admin/user, roles: ROLE_ADMIN }
-        
+        - { path: ^/noticia, roles: ROLE_USER }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
