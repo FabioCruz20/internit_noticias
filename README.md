@@ -3,6 +3,9 @@ internit_noticias
 
 A Symfony project created on August 24, 2019, 4:40 pm.
 
+Rotas do sistema
+===
+
 / - login de usuários comuns
 ====
 /register - cadastro de usuários comuns.
