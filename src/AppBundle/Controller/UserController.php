@@ -16,30 +16,14 @@ class UserController extends Controller
     /**
      * @Route("/user", name="user")
      */
-    public function indexAction(Security $security, Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+    public function indexAction(Security $security, Request $request, 
+        UserPasswordEncoderInterface $passwordEncoder) 
+    {
         //dump($user); die;
         $usuario = $security->getUser();
 
-        $form = $this->createForm(UserType::class, $usuario);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // senha codificada
-            $senhaCodificada = $passwordEncoder->encodePassword($usuario, $usuario->getPassword());
-            $usuario->setSenha($senhaCodificada);
-
-            // entity manager para salvar o usuário
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($usuario);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('noticia.destaque'));
-        }
-
-        return $this->render("user/user.html.twig", [
-            "form" => $form->createView()
-        ]);
+        return $this->register($request, $passwordEncoder, $usuario, "noticia.destaque", 
+            "user/user.html.twig", "Criar", "Usuário criado");
     }
 
     /**
@@ -59,26 +43,51 @@ class UserController extends Controller
     /**
      * @Route("/admin/user/edit/{id}", name="user.edit")
      */
-    public function userEditAction(User $usuario, Request $request) {
+    public function userEditAction(User $usuario, Request $request, 
+        UserPasswordEncoderInterface $passwordEncoder) 
+    {
+        return $this->register($request, $passwordEncoder, $usuario, "user.admin", 
+            "admin/user-edit.html.twig", "Atualizar", "Usuário atualizado");
+    }
+
+    /**
+     * @Route("admin/user/create", name="user.create")
+     */
+    public function userCreateAction(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+
+        $usuario = new User();
+
+        return $this->register($request, $passwordEncoder, $usuario, "user.admin", 
+            "admin/user-edit.html.twig", "Criar", "Usuário criado");
+    }
+
+
+    private function register(Request $request, UserPasswordEncoderInterface $passwordEncoder,
+        User $usuario, $nomeRota, $urlForm, $funcao, $msgSucesso) 
+    {
 
         $form = $this->createForm(UserType::class, $usuario);
+
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isValid() && $form->isSubmitted()) {
+            // senha codificada
+            $senhaCodificada = $passwordEncoder->encodePassword($usuario, $usuario->getPassword());
+            $usuario->setSenha($senhaCodificada);
 
-            // entity manager para persistir o usuário
+            // entity manager para salvar o usuário
             $em = $this->getDoctrine()->getManager();
             $em->persist($usuario);
             $em->flush();
 
-            $this->addFlash("success", "Usuário atualizado.");
+            $this->addFlash("success", $msgSucesso);
 
-            return $this->redirect($this->generateUrl("user.admin"));
+            return $this->redirect($this->generateUrl($nomeRota));
         }
 
-        return $this->render("admin/user-edit.html.twig", [
+        return $this->render($urlForm, [
             "form" => $form->createView(),
-            "funcao" => "Atualizar"
+            "funcao" => $funcao
         ]);
     }
 }

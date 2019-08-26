@@ -1,6 +1,7 @@
 {% extends("base.html.twig") %}
 {% block body %}
     <h1>Usuários</h1>
+    <a href="{{ path('user.create') }}">Novo usuário</a>
     {% for message in app.flashes("success") %}
         <div class="noticia-sucesso">{{ message }}</div>
     {% endfor %}
