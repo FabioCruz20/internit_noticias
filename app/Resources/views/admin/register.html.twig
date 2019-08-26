@@ -1,0 +1,12 @@
+{% extends("base.html.twig") %}
+{% block body %}
+    <h1>Cadastro para acessar o painel administrativo</h1>
+    <p>
+        Observação: esta área de cadastro de administradores está disponível no momento apenas para
+        fins de teste do sistema.
+    </p>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Registrar</button>
+    {{ form_end(form) }}
+{% endblock %}
