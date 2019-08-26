@@ -1,0 +1,15 @@
+{% extends("base.html.twig")  %}
+{% block body %}
+    {% if erro %}
+        <div>{{ erro.messageKey }}</div>
+    {% endif %}
+    <form action="{{ path('admin.login') }}" method="post">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="_username" value="{{ ultimo_email }}">
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="_password">
+
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock %}
