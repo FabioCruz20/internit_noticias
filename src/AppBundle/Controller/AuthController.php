@@ -65,4 +65,21 @@ class AuthController extends Controller
     public function logoutAction() {
         return $this->redirect($this->generateUrl("login"));
     }
+
+    /**
+     * @Route("/admin/login", name="admin.login")
+     */
+    public function adminLoginAction(AuthenticationUtils $authenticationUtils) {
+
+        // pegando o possível erro de login
+        $erro = $authenticationUtils->getLastAuthenticationError();
+
+        // pegando último email digitado
+        $ultimoEmail = $authenticationUtils->getLastUsername();
+
+        return $this->render("admin/login.html.twig", [
+            "ultimo_email" => $ultimoEmail,
+            "erro" => $erro
+        ]);
+    }
 }
