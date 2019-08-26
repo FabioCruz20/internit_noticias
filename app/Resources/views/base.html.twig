@@ -11,10 +11,16 @@
         <header class="header">
             <nav class="container">
                 <ul>
-                    <li><a href="{{ path('noticia.destaque') }}">Logo_empresa</a>
-                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li><a href="#">Logo_empresa</a>
+                    {% if is_granted("ROLE_USER") %}
                         <li><a href="{{ path('noticia.destaque') }}">Notícias</a></li>
                         <li><a href="{{ path('user') }}">Editar dados</a></li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li><a href="{{ path('noticia.admin') }}">Notícias</a></li>
+                        <li><a href="{{ path('user.admin') }}">Usuários</a></li>
+                    {% endif %}
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                         <li><a href="{{ path('app_logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
